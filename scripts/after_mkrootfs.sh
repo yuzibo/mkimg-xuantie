@@ -51,17 +51,7 @@ EOF
     # replace "Exec=/usr/bin/chromium %U" to "Exec=/usr/bin/chromium --no-sandbox --use-gl=egl %U"
     if [ "${BOARD}" == "${BOARD_LPI4A}" ] || [ "${BOARD}" == "${BOARD_AHEAD}" ] || [ "${BOARD}" == "${BOARD_MELES}" ] || [ "${BOARD}" == "${BOARD_CONSOLE4A}" ] || [ "${BOARD}" == "${BOARD_LAPTOP4A}" ]; then
         chroot "$CHROOT_TARGET" /bin/bash << EOF
-sed -i "s/Exec=\/usr\/bin\/chromium/Exec=\/usr\/bin\/chromium --no-sandbox --use-gl=egl/gi" \
-        /usr/share/applications/chromium.desktop
-# Temp add HDMI audio output on Volume control
-echo "load-module module-alsa-sink device=hw:0,2 tsched=0" >> /etc/pulse/default.pa
-
-# Change xfce4-panel default web-browser icon to chromium
-sed -i 's/xfce4-web-browser.desktop/chromium.desktop/g' /etc/xdg/xfce4/panel/default.xml
-
-# Fix cann't connect bluetooth headphone
-sed -i 's/load-module module-bluetooth-policy/load-module module-bluetooth-policy auto_switch=false/g' \
-        /etc/pulse/default.pa
+	echo "no chrmium"
 EOF
     fi
 
@@ -69,12 +59,14 @@ EOF
     # Note: on Console 4A, DSI+HDMI dual screen will have problem for now because of xfce4-display-settings
     # (xfce4-display-settings can't handle rotated DSI screen + HDMI screen correctly, using xrandr or arandr is fine)
     if [ "${BOARD}" == "${BOARD_LPI4A}" ] || [ "${BOARD}" == "${BOARD_CONSOLE4A}" ] || [ "${BOARD}" == "${BOARD_LAPTOP4A}" ] || [ "${BOARD}" == "${BOARD_AHEAD}" ] || [ "${BOARD}" == "${BOARD_MELES}" ]; then
-        cat << EOF > "$CHROOT_TARGET"/usr/share/X11/xorg.conf.d/10-gc620.conf
-Section "Device"
-	Identifier "dc8200"
-	Driver "thead"
-EndSection
-EOF
+	# vimer ^
+        #cat << EOF > "$CHROOT_TARGET"/usr/share/X11/xorg.conf.d/10-gc620.conf
+#Section "Device"
+#	Identifier "dc8200"
+#	Driver "thead"
+#EndSection
+#EOF
+	echo "Debian no these files"
     fi
 
     if [ "${BOARD}" == "${BOARD_LPI4A_MAINLINE}" ]; then
@@ -83,7 +75,7 @@ EOF
     else
         # Install other packages
         chroot "$CHROOT_TARGET" /bin/bash << EOF
-apt install -y mpv parole th1520-vpu libgl4es th1520-npu
+#apt install -y mpv parole th1520-vpu libgl4es th1520-npu
 EOF
     fi
 
@@ -102,7 +94,8 @@ rm -vr /etc/update-motd.d
 EOF
         cp -rp addons/etc/update-motd.d "$CHROOT_TARGET"/etc/
     fi
-    if [ "${BOARD}" != "${BOARD_LPI4A_MAINLINE}" ]; then
+    # vimer ^  !=
+    if [ "${BOARD}" == "${BOARD_LPI4A_MAINLINE}" ]; then
         # Wallpaper
         cp -rp addons/usr/share/images/ruyisdk "$CHROOT_TARGET"/usr/share/images/
         chroot "$CHROOT_TARGET" /bin/bash << EOF
