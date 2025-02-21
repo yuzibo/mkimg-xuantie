@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# BOARD=${BOARD:-lpi4a} # lpi4a, ahead
+BOARD=${BOARD:-lpi4a} # lpi4a, ahead
 BOOT_SIZE=500M
 BOOT_IMG=""
 ROOT_SIZE=5G
@@ -26,11 +26,11 @@ source $(pwd)/scripts/create_sdcard.sh
 
 make_imagefile()
 {
-    if [ -f revyos-release ]; then
-        echo "Found revyos-release, using timestamp in this file."
-        . ./revyos-release
-        TIMESTAMP=${BUILD_ID}
-    fi
+#    if [ -f revyos-release ]; then
+#        echo "Found revyos-release, using timestamp in this file."
+#        . ./revyos-release
+#        TIMESTAMP=${BUILD_ID}
+#    fi
     BOOT_IMG="boot-$BOARD-$TIMESTAMP.ext4"
     truncate -s "$BOOT_SIZE" "$BOOT_IMG"
     ROOT_IMG="root-$BOARD-$TIMESTAMP.ext4"
@@ -102,7 +102,7 @@ main()
 # 	make_kernel
 	make_bootable
 	after_mkrootfs
-	create_sdcard
+# vimer	create_sdcard
 	exit
 }
 

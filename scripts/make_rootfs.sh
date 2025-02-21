@@ -2,15 +2,22 @@
 
 make_rootfs_tarball()
 {
-    # use $1
-    PACKAGE_LIST="$KEYRINGS $GPU_DRIVER $BASE_TOOLS $GRAPHIC_TOOLS $XFCE_DESKTOP $BENCHMARK_TOOLS $FONTS $INCLUDE_APPS $EXTRA_TOOLS $LIBREOFFICE"
+    # repo defined
+    #REVYOS-GLES="deb https://mirror.iscas.ac.cn/revyos/revyos-gles-21/ revyos-gles-21 main"
+    #REVYOS-ADDON="deb https://mirror.iscas.ac.cn/revyos/revyos-addons/ revyos-addons main"
+    #REVYOS-KERNEL="deb https://mirror.iscas.ac.cn/revyos/revyos-kernels/ revyos-kernels main"
+    #REVYOS-BASE="deb https://mirror.iscas.ac.cn/revyos/revyos-base/ sid main contrib non-free non-free-firmware"
+    #DEBIAN-MAIN="deb http://mirrors.tuna.tsinghua.edu.cn/debian trixie main contrib non-free non-free-firmware"
+
+    # See define packages_list.sh
+    #PACKAGE_LIST="$KEYRINGS $GPU_DRIVER $BASE_TOOLS $GRAPHIC_TOOLS $XFCE_DESKTOP $BENCHMARK_TOOLS $FONTS $INCLUDE_APPS $EXTRA_TOOLS $LIBREOFFICE"
+    PACKAGE_LIST="$KEYRINGS $BASE_TOOLS $BENCHMARK_TOOLS $EXTRA_TOOLS"
     mmdebstrap --architectures=riscv64 \
         --include="$PACKAGE_LIST" \
         sid $1 \
-        "deb https://mirror.iscas.ac.cn/revyos/revyos-gles-21/ revyos-gles-21 main" \
-        "deb https://mirror.iscas.ac.cn/revyos/revyos-addons/ revyos-addons main" \
-        "deb https://mirror.iscas.ac.cn/revyos/revyos-kernels/ revyos-kernels main" \
-        "deb https://mirror.iscas.ac.cn/revyos/revyos-base/ sid main contrib non-free non-free-firmware"
+    "deb [trusted=yes] https://mirror.iscas.ac.cn/revyos/revyos-addons/ revyos-addons main" \
+    "deb [trusted=yes] https://mirror.iscas.ac.cn/revyos/revyos-kernels/ revyos-kernels main" \
+    "deb http://mirrors.tuna.tsinghua.edu.cn/debian trixie main contrib non-free non-free-firmware"
 }
 
 make_rootfs()
