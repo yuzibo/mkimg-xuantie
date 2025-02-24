@@ -81,18 +81,12 @@ EOF
 
     # Setup branding related
     if [ "${BOARD}" == "${BOARD_LPI4A}" ] || [ "${BOARD}" == "${BOARD_CONSOLE4A}" ] || [ "${BOARD}" == "${BOARD_LAPTOP4A}" ]; then
+	echo "skip motd on debian"
         chroot "$CHROOT_TARGET" /bin/bash << EOF
-apt install -y $BRANDING
-rm -vr /etc/update-motd.d
+	# vimer ^: skip above packages on debian
+#apt install -y $BRANDING
+#rm -vr /etc/update-motd.d
 EOF
-        cp -rp addons/etc/update-motd.d "$CHROOT_TARGET"/etc/
-    elif [ "${BOARD}" == "${BOARD_LPI4A_MAINLINE}" ]; then
-        # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1029394
-        chroot "$CHROOT_TARGET" /bin/bash << EOF
-apt install -y lsb-release figlet
-rm -vr /etc/update-motd.d
-EOF
-        cp -rp addons/etc/update-motd.d "$CHROOT_TARGET"/etc/
     fi
     # vimer ^  !=
     if [ "${BOARD}" == "${BOARD_LPI4A_MAINLINE}" ]; then

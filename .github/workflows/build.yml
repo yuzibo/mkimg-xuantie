@@ -27,6 +27,7 @@ jobs:
                                   qemu-user-static binfmt-support mmdebstrap
               wget https://mirror.isrc.ac.cn/revyos/revyos-addons/pool/main/r/revyos-keyring/revyos-keyring_2025.03.28_all.deb
               sudo apt install ./revyos-keyring_2025.03.28_all.deb
+              
 
       - name: Checkout qemu
         uses: actions/checkout@v4
