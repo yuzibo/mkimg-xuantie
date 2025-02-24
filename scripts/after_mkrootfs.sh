@@ -88,9 +88,11 @@ after_mkrootfs()
 
     # Setup branding related
     if [ "${BOARD}" == "${BOARD_LPI4A}" ] || [ "${BOARD}" == "${BOARD_CONSOLE4A}" ] || [ "${BOARD}" == "${BOARD_LAPTOP4A}" ]; then
-        chroot "$CHROOT_TARGET" sh -c "apt install -y $BRANDING "
-        rm -vr "$CHROOT_TARGET"/etc/update-motd.d
-        cp -rp addons/etc/update-motd.d "$CHROOT_TARGET"/etc/
+        #chroot "$CHROOT_TARGET" sh -c "apt install -y $BRANDING "
+        #rm -vr "$CHROOT_TARGET"/etc/update-motd.d
+        #cp -rp addons/etc/update-motd.d "$CHROOT_TARGET"/etc/
+	# vimer ^: skip above packages on debian
+	echo "skip motd on debian"
     elif [ "${BOARD}" == "${BOARD_LPI4A_MAINLINE}" ]; then
         # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1029394
         chroot "$CHROOT_TARGET" sh -c "apt install -y lsb-release figlet "
