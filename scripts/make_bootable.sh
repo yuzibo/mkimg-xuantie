@@ -7,7 +7,7 @@ make_bootable()
 
     # Add update-u-boot config
     chroot "$CHROOT_TARGET" sh -c "echo 'U_BOOT_PROMPT=\"2\"' >> /etc/default/u-boot"
-    chroot "$CHROOT_TARGET" sh -c "echo 'U_BOOT_MENU_LABEL=\"RevyOS GNU/Linux\"' >> /etc/default/u-boot"
+    chroot "$CHROOT_TARGET" sh -c "echo 'U_BOOT_MENU_LABEL=\"Debian GNU/Linux\"' >> /etc/default/u-boot"
     if [ "${BOARD}" == "${BOARD_CONSOLE4A}" ]; then
         chroot "$CHROOT_TARGET" sh -c "echo 'U_BOOT_PARAMETERS=\"console=ttyS0,115200 rootwait rw earlycon clk_ignore_unused loglevel=7 eth=$ethaddr rootrwoptions=rw,noatime rootrwreset=yes fbcon=rotate:1\"' >> /etc/default/u-boot"
     else

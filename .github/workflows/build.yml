@@ -170,14 +170,14 @@ jobs:
 
       - name: Make Image
         run: |
-              # make revyos-release on CI
+              # make debian-release on CI
               pushd mkimg-th1520
-                echo "BUILD_ID=${{ env.BUILD_ID }}" >> revyos-release
-                echo "BUILD_DATE=${{ env.BUILD_DATE }}" >> revyos-release
-                echo "BOARD_NAME=${{ env.BOARD }}" >> revyos-release
-                echo "RELEASE_ID=${{ github.ref_name }}" >> revyos-release
-                echo "COMMIT_ID=${{ github.sha }}" >> revyos-release
-                echo "RUNNER_ID=${{ github.run_id }}" >> revyos-release
+                echo "BUILD_ID=${{ env.BUILD_ID }}" >> debian-release
+                echo "BUILD_DATE=${{ env.BUILD_DATE }}" >> debian-release
+                echo "BOARD_NAME=${{ env.BOARD }}" >> debian-release
+                echo "RELEASE_ID=${{ github.ref_name }}" >> debian-release
+                echo "COMMIT_ID=${{ github.sha }}" >> debian-release
+                echo "RUNNER_ID=${{ github.run_id }}" >> debian-release
                 sudo -E ./mkrootfs.sh
               popd
 
