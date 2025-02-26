@@ -3,10 +3,10 @@
 after_mkrootfs()
 {
     # Add timestamp file in /etc
-    if [ ! -f revyos-release ]; then
-        echo "$TIMESTAMP" > "$CHROOT_TARGET"/etc/revyos-release
+    if [ ! -f debian-release ]; then
+        echo "$TIMESTAMP" > rootfs/etc/debian-release
     else
-        cp -v revyos-release "$CHROOT_TARGET"/etc/revyos-release
+        cp -v debian-release rootfs/etc/debian-release
     fi
 
     # copy addons to rootfs
@@ -167,7 +167,7 @@ EOF
 
     # Change hostname
     chroot $CHROOT_TARGET /bin/bash << EOF
-echo revyos-${BOARD} > /etc/hostname
+echo debian-${BOARD} > /etc/hostname
 EOF
 
     # Disable iperf3
