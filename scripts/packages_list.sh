@@ -12,7 +12,7 @@ KERNEL_meles="linux-headers-6.6.82-th1520 linux-image-6.6.82-th1520 th1520-mainl
 KERNEL=$(eval echo '$'"KERNEL_${BOARD}")
 
 PACKAGE_LIST=""
-KEYRINGS="ca-certificates debian-ports-archive-keyring revyos-keyring"
+KEYRINGS="ca-certificates debian-archive-keyring revyos-keyring"
 GPU_DRIVER="thead-gles-addons"
 BASE_TOOLS="locales binutils file tree sudo bash-completion u-boot-menu initramfs-tools openssh-server network-manager dnsmasq-base libpam-systemd ppp wireless-regdb wpasupplicant libengine-pkcs11-openssl iptables systemd-timesyncd vim usbutils dosfstools parted exfatprogs systemd-sysv pkexec arch-install-scripts bluez cloud-guest-utils"
 GRAPHIC_TOOLS="libgles2 mesa-vulkan-drivers glmark2-es2 mesa-utils vulkan-tools"

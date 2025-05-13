@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# BOARD=${BOARD:-lpi4a} # lpi4a, ahead
+BOARD=${BOARD:-lpi4a} # lpi4a, ahead
 BOOT_SIZE=500M
 BOOT_IMG=""
 ROOT_SIZE=5G
@@ -22,7 +22,7 @@ source $(pwd)/scripts/packages_list.sh
 source $(pwd)/scripts/make_rootfs.sh
 source $(pwd)/scripts/make_bootable.sh
 source $(pwd)/scripts/after_mkrootfs.sh
-source $(pwd)/scripts/create_sdcard.sh
+#source $(pwd)/scripts/create_sdcard.sh
 
 make_imagefile()
 {
@@ -102,7 +102,7 @@ main()
 # 	make_kernel
 	make_bootable
 	after_mkrootfs
-	create_sdcard
+	#create_sdcard
 	exit
 }
 
